@@ -9,38 +9,38 @@ import SwiftUI
 
 struct ContentView: View {
     
-    @ObservedObject var order = Order()
+    @ObservedObject var orderObserver = OrderObserver()
     
     var body: some View {
         NavigationView {
             Form {
                 Section {
-                    Picker("Select your cake type", selection: $order.type) {
+                    Picker("Select your cake type", selection: $orderObserver.order.type) {
                         ForEach(0..<Order.types.count) {
                             Text(Order.types[$0])
                         }
                     }
                     
-                    Stepper(value: $order.quantity, in: 3...20) {
-                        Text("Number of cakes: \(order.quantity)")
+                    Stepper(value: $orderObserver.order.quantity, in: 3...20) {
+                        Text("Number of cakes: \(orderObserver.order.quantity)")
                     }
                 }
                 Section {
-                    Toggle(isOn: $order.specialRequestEnabled.animation()) {
+                    Toggle(isOn: $orderObserver.order.specialRequestEnabled.animation()) {
                         Text("Any special requests?")
                     }
-                    if order.specialRequestEnabled {
-                        Toggle(isOn: $order.extraFrosting) {
+                    if orderObserver.order.specialRequestEnabled {
+                        Toggle(isOn: $orderObserver.order.extraFrosting) {
                             Text("Add extra frosting")
                         }
-                        Toggle(isOn: $order.addSprinkles) {
+                        Toggle(isOn: $orderObserver.order.addSprinkles) {
                             Text("Add extra sprinkles")
                         }
                     }
                 }
                 
                 Section {
-                    NavigationLink(destination: AddressView(order: order)) {
+                    NavigationLink(destination: AddressView(orderObserver: orderObserver)) {
                         Text("Delivery Details")
                     }
                 }
