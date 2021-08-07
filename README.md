@@ -17,5 +17,9 @@ SwiftUI/Swift
 
 
 
+https://user-images.githubusercontent.com/66451506/128609775-5b364e32-3130-4c2d-bc47-95b1dc6f1a67.mov
+
+
+
 # Inspirations
 I got inspiration from a tutorial of Swift on Hacking With Swift! 
